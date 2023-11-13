@@ -3,14 +3,16 @@ package structs
 import "testing"
 
 func TestPerimeter(t *testing.T) {
-	got := Perimeter(10.0, 10.0)
+	rectangle := Rectangle{Width: 10.0, Height: 10.0}
+	got := Perimeter(rectangle)
 	want := 40.0
 
 	assertTest(t, got, want)
 }
 
 func TestArea(t *testing.T) {
-	got := Area(12.0, 6.0)
+	rectangle := Rectangle{Width: 12.0, Height: 6.0}
+	got := Area(rectangle)
 	want := 72.0
 
 	assertTest(t, got, want)
