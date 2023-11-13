@@ -1,5 +1,9 @@
 package structs
 
+import (
+	"math"
+)
+
 type Circle struct {
 	Radius float64
 }
@@ -18,5 +22,5 @@ func (r Rectangle) Area() float64 {
 }
 
 func (c Circle) Area() float64 {
-	return 0
+	return math.Pi * math.Pow(c.Radius, 2)
 }
