@@ -19,17 +19,25 @@ func TestArea(t *testing.T) {
 		assertTestG(t, got, want)
 	}
 
-	t.Run("rectangles", func(t *testing.T) {
-		rectangle := Rectangle{12, 6}
+	areaTests := map[string]struct {
+		shape Shape
+		want  float64
+	}{
+		"rectangles": {
+			shape: Rectangle{12, 6},
+			want:  72.0,
+		},
+		"circles": {
+			shape: Circle{10},
+			want:  314.1592653589793,
+		},
+	}
 
-		checkArea(t, rectangle, 72.0)
-	})
-
-	t.Run("circles", func(t *testing.T) {
-		circle := Circle{10}
-
-		checkArea(t, circle, 314.1592653589793)
-	})
+	for testName, test := range areaTests {
+		t.Run(testName, func(t *testing.T) {
+			checkArea(t, test.shape, test.want)
+		})
+	}
 }
 
 func assertTest(t testing.TB, got, want float64) {
