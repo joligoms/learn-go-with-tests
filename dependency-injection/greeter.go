@@ -6,5 +6,5 @@ import (
 )
 
 func Greet(b *bytes.Buffer, name string) {
-	fmt.Printf("Hello, %s", name)
+	fmt.Fprintf(b, "Hello, %s", name)
 }
