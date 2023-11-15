@@ -14,6 +14,17 @@ func TestWallet(t *testing.T) {
 
 		assertCorrect(t, got, want)
 	})
+
+	t.Run("withdraw", func(t *testing.T) {
+		wallet := Wallet{balance: Bitcoin(20)}
+
+		wallet.Withdraw(Bitcoin(10))
+
+		got := wallet.Balance()
+		want := Bitcoin(10)
+
+		assertCorrect(t, got, want)
+	})
 }
 
 func assertCorrect(t testing.TB, got, want Bitcoin) {
