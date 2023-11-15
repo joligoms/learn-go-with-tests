@@ -22,7 +22,7 @@ func (d Dictionary) Search(word string) (string, error) {
 	return definition, nil
 }
 
-func (d Dictionary) Add(word string, definition string) error {
+func (d Dictionary) Add(word, definition string) error {
 	_, err := d.Search(word)
 
 	switch err {
@@ -36,3 +36,5 @@ func (d Dictionary) Add(word string, definition string) error {
 
 	return nil
 }
+
+func (d Dictionary) Update(word, definition string) {}
