@@ -3,12 +3,12 @@ package maps
 import "testing"
 
 func TestSearch(t *testing.T) {
-	dictionary := map[string]string{"test": "this is hust a test"}
+	dictionary := map[string]string{"test": "this is just a test"}
 
 	got := Search(dictionary, "test")
 	want := "this is just a test"
 
 	if got != want {
-		t.Errorf("searching '%q' gives %q. expected %q", "test", got, want)
+		t.Errorf("searching %q gives %q. expected %q", "test", got, want)
 	}
 }
