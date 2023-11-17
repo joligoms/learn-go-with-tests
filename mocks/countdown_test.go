@@ -29,7 +29,7 @@ func TestCountdown(t *testing.T) {
 		buffer := &bytes.Buffer{}
 		spyCountdown := &SpyCountdownCheck{}
 
-		Countdown(spyCountdown, spyCountdown)
+		Countdown(buffer, spyCountdown)
 
 		got := buffer.String()
 		want := `3
