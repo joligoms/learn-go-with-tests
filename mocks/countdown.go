@@ -3,7 +3,16 @@ package mocks
 import (
 	"fmt"
 	"io"
+	"time"
 )
+
+type ConfigurableSleeper struct {
+	duration time.Duration
+	sleep    func(time.Duration)
+}
+
+func (c *ConfigurableSleeper) Sleep() {
+}
 
 type Sleeper interface {
 	Sleep()
