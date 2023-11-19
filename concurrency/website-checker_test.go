@@ -1,6 +1,7 @@
 package concurrency
 
 import (
+	"math/rand"
 	"reflect"
 	"testing"
 	"time"
@@ -14,8 +15,18 @@ func mockWebsiteChecker(url string) bool {
 	return true
 }
 
+func getRandomMilisecondQuantity() int {
+	min := 20
+	max := 400
+
+	randomNumber := rand.Intn(max-min+1) + min
+
+	return randomNumber
+}
+
 func slowStubWebsiteChecker(_ string) bool {
-	time.Sleep(20 * time.Millisecond)
+	randomMilisecondNum := getRandomMilisecondQuantity()
+	time.Sleep(time.Duration(randomMilisecondNum) * time.Millisecond)
 
 	return true
 }
