@@ -8,18 +8,6 @@ import (
 	"time"
 )
 
-type StubStore struct {
-	response string
-}
-
-func (s *StubStore) Fetch() string {
-	return s.response
-}
-
-func (s *StubStore) Cancel() {
-	//
-}
-
 type SpyStore struct {
 	response  string
 	cancelled bool
@@ -35,9 +23,10 @@ func (s *SpyStore) Cancel() {
 }
 
 func TestServer(t *testing.T) {
-	t.Run("writes data to response", func(t *testing.T) {
+	t.Run("returns data from store", func(t *testing.T) {
 		data := "hello, world"
-		svr := Server(&StubStore{data})
+		store := &SpyStore{response: data}
+		svr := Server(store)
 
 		request := httptest.NewRequest(http.MethodGet, "/", nil)
 		response := httptest.NewRecorder()
@@ -46,6 +35,10 @@ func TestServer(t *testing.T) {
 
 		if response.Body.String() != data {
 			t.Errorf(`got "%s", want "%s"`, response.Body.String(), data)
+		}
+
+		if store.cancelled {
+			t.Error("it should not have cancelled the store")
 		}
 	})
 
