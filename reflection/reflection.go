@@ -1,5 +1,9 @@
 package reflection
 
+import "reflect"
+
 func walk(x any, fn func(input string)) {
-	fn("I still can't believe Germany beat Brazil 7-1 :(")
+	val := reflect.ValueOf(x)
+	field := val.Field(0)
+	fn(field.String())
 }
