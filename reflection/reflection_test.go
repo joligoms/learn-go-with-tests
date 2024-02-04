@@ -15,6 +15,22 @@ type Profile struct {
 	City string
 }
 
+type User struct {
+	Name    string
+	Profile UserProfile
+}
+
+type UserProfile struct {
+	Age     int
+	Address Address
+}
+
+type Address struct {
+	Description string
+	Number      int
+	City        string
+}
+
 func TestWalk(t *testing.T) {
 	cases := []struct {
 		Name          string
@@ -51,6 +67,21 @@ func TestWalk(t *testing.T) {
 				Profile{33, "London"},
 			},
 			[]string{"Chris", "London"},
+		},
+		{
+			"second level nested field",
+			User{
+				"James",
+				UserProfile{
+					25,
+					Address{
+						"Somewhere Overthe Rainbow St.",
+						123,
+						"Wizzard of Oz",
+					},
+				},
+			},
+			[]string{"James", "Somewhere Overthe Rainbow St.", "Wizzard of Oz"},
 		},
 	}
 
